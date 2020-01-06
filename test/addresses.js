@@ -9,3 +9,7 @@ exports.genericAddress = function () {
 exports.reserveHolderAddress = function () {
 	  return '0x72F45a1E0DA87Fe826b3A6535ad014bd01F56Ef5';
 };
+
+exports.newOwnerAddress = function () {
+	  return '0x8171893fae4cFb02F90dcd73521Ac0FaB2B38166';
+};
