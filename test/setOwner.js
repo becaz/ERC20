@@ -46,8 +46,15 @@ contract('Token', () => {
     describe('when sender is the owner', async () => {
       it('sets a new owner', async () =>{
         await contr.setOwner(newOwnerAddr, {from: contractOwnerAddr});
-        const result = await contr.owner();
-        assert.equal(result, newOwnerAddr, 'it sets a new owner');
+
+        const owner = await contr.owner();
+        const isNewOwnerPauser = await contr.isPauser(newOwnerAddr);
+        const isOldOwnerPauser = await contr.isPauser(contractOwnerAddr);
+
+        assert.equal(owner, newOwnerAddr, 'it sets a new owner');
+        assert.equal(isNewOwnerPauser, true, 'it sets a new pauser');
+        assert.equal(isOldOwnerPauser, false, 'it renounces the old pauser');
+
       });
     });
 

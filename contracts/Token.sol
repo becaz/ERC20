@@ -16,8 +16,8 @@ contract Token is ERC20, ERC20Burnable, ERC20Detailed, ERC20Pausable {
     uint256 _reservedSupply = 370*(10**24);
 
     _owner = _contractOwner;
-
     addPauser(_owner);
+
     _mint(_owner, _circulatingSupply);
     _mint(_reserveHolder, _reservedSupply);
   }
@@ -28,8 +28,12 @@ contract Token is ERC20, ERC20Burnable, ERC20Detailed, ERC20Pausable {
     require(_owner == msg.sender, "NOT_OWNER");
     require(ownerAddr != address(0), "ZERO_ADDR");
 
+    addPauser(ownerAddr);
+    _removePauser(_owner);
+
     _owner = ownerAddr;
   }
+
 
   function owner() public view returns(address)
   {
