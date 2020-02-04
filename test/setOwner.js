@@ -15,6 +15,7 @@ contract('Token', () => {
     zeroAddr = '0x0000000000000000000000000000000000000000';
   });
 
+
   describe('setOwner', async () => {
 
     describe('when a new owner address is the zero address', async () => {
